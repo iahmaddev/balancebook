@@ -1,0 +1,180 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+  <meta name="theme-color" content="#10251f">
+  <meta name="description" content="A simple personal tracker for money lent, money borrowed, and repayments.">
+  <link rel="manifest" href="manifest.json">
+  <link rel="icon" href="icon.svg" type="image/svg+xml">
+  <title>BalanceBook — Personal balance tracker</title>
+  <style>
+    :root{color-scheme:light;--bg:#f4f7f5;--surface:#fff;--ink:#172620;--muted:#6c7a73;--line:#e1e9e4;--brand:#176b50;--brand-dark:#10523d;--mint:#e5f5ec;--red:#b54747;--red-bg:#fff0ef;--amber:#8a5a12;--amber-bg:#fff4d9;--shadow:0 10px 28px rgba(20,48,36,.06)}
+    *{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--ink);font:15px/1.45 system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif}button,input,select,textarea{font:inherit}button{cursor:pointer}.app{max-width:1120px;margin:0 auto;min-height:100vh;padding:0 22px 40px}.topbar{display:flex;align-items:center;justify-content:space-between;gap:16px;padding:22px 0}.brand{display:flex;align-items:center;gap:11px}.logo{width:42px;height:42px;border-radius:13px;background:var(--brand);color:white;display:grid;place-items:center;font-weight:850;font-size:20px;letter-spacing:-1px}.brand h1{font-size:20px;margin:0;letter-spacing:-.6px}.brand p{margin:2px 0 0;color:var(--muted);font-size:12px}.top-actions{display:flex;gap:8px;flex-wrap:wrap}.btn{border:1px solid var(--line);border-radius:10px;background:var(--surface);color:var(--ink);padding:10px 13px;font-weight:650;display:inline-flex;align-items:center;justify-content:center;gap:7px}.btn:hover{border-color:#a9c5b6}.btn.primary{background:var(--brand);border-color:var(--brand);color:#fff}.btn.primary:hover{background:var(--brand-dark)}.btn.subtle{background:var(--mint);border-color:transparent;color:var(--brand-dark)}.btn.danger{color:var(--red);background:var(--red-bg);border-color:#f4d2d0}.btn.small{padding:7px 10px;font-size:13px}.hero{border-radius:20px;padding:27px 28px;background:linear-gradient(115deg,#102d23,#176b50);color:white;display:flex;align-items:center;justify-content:space-between;gap:24px;box-shadow:var(--shadow)}.eyebrow{text-transform:uppercase;font-size:11px;letter-spacing:1.4px;font-weight:800;opacity:.75}.hero h2{font-size:clamp(25px,4vw,34px);line-height:1.12;letter-spacing:-1px;margin:9px 0}.hero p{margin:0;max-width:520px;color:#d5e9df}.hero .btn{background:#fff;color:#14523d;border-color:#fff;white-space:nowrap}.stats{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:14px;margin:18px 0 24px}.stat{padding:19px 20px;background:var(--surface);border:1px solid var(--line);border-radius:16px;box-shadow:var(--shadow);min-width:0}.stat-top{display:flex;align-items:center;justify-content:space-between;gap:10px;color:var(--muted);font-size:13px}.stat-icon{width:32px;height:32px;border-radius:10px;background:var(--mint);color:var(--brand);display:grid;place-items:center;font-weight:900}.stat .amount{font-size:clamp(20px,3vw,27px);font-weight:800;letter-spacing:-.7px;margin-top:12px;overflow-wrap:anywhere}.stat small{display:block;color:var(--muted);margin-top:5px;font-size:12px}.stat.negative .stat-icon{background:var(--red-bg);color:var(--red)}.stat.net .stat-icon{background:#edf0ff;color:#4b59a7}.section-head{display:flex;align-items:center;justify-content:space-between;gap:12px;margin-bottom:13px}.section-head h2{margin:0;font-size:19px;letter-spacing:-.4px}.section-head p{margin:3px 0 0;color:var(--muted);font-size:13px}.workspace{display:grid;grid-template-columns:minmax(0,1.25fr) minmax(280px,.75fr);gap:18px}.panel{background:var(--surface);border:1px solid var(--line);border-radius:16px;padding:20px;box-shadow:var(--shadow);min-width:0}.search{width:100%;border:1px solid var(--line);border-radius:10px;padding:11px 12px;background:#fbfcfb;outline:none}.search:focus,input:focus,select:focus,textarea:focus{border-color:#66a78b;box-shadow:0 0 0 3px #176b5018;outline:none}.people-list{display:grid;gap:9px;margin-top:14px}.person{border:1px solid var(--line);border-radius:12px;padding:13px;display:flex;align-items:center;gap:12px;cursor:pointer;transition:border-color .15s,background .15s}.person:hover,.person.selected{border-color:#8bbca4;background:#f7fcf8}.avatar{width:40px;height:40px;border-radius:12px;display:grid;place-items:center;background:#e7f3eb;color:var(--brand);font-weight:800;flex-shrink:0}.person-main{min-width:0;flex:1}.person-name{font-weight:750;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}.person-meta{font-size:12px;color:var(--muted);margin-top:3px}.person-balance{text-align:right;font-weight:800;white-space:nowrap}.person-balance small{display:block;font-size:11px;color:var(--muted);font-weight:500}.empty{padding:30px 16px;text-align:center;color:var(--muted);border:1px dashed #cfdcd3;border-radius:12px}.empty strong{display:block;color:var(--ink);margin-bottom:5px}.detail-empty{min-height:260px;display:grid;place-items:center;text-align:center;color:var(--muted);padding:20px}.detail-head{display:flex;align-items:center;gap:12px;margin-bottom:18px}.detail-head .avatar{width:48px;height:48px}.detail-head h3{margin:0;font-size:18px}.detail-head p{margin:3px 0 0;font-size:12px;color:var(--muted)}.detail-balance{background:#f5faf6;border:1px solid #e0eee4;padding:15px;border-radius:12px;margin-bottom:15px}.detail-balance span{font-size:12px;color:var(--muted)}.detail-balance strong{display:block;font-size:25px;margin-top:4px;letter-spacing:-.6px}.detail-actions{display:flex;gap:8px;margin-bottom:18px}.detail-actions .btn{flex:1}.history-title{font-size:13px;font-weight:800;margin:0 0 10px}.history{display:grid;gap:0}.transaction{padding:12px 0;border-top:1px solid var(--line);display:flex;gap:10px;align-items:flex-start}.tx-icon{width:33px;height:33px;display:grid;place-items:center;border-radius:10px;flex-shrink:0;font-weight:900}.tx-icon.plus{background:var(--mint);color:var(--brand)}.tx-icon.minus{background:var(--red-bg);color:var(--red)}.tx-main{flex:1;min-width:0}.tx-title{font-size:13px;font-weight:700}.tx-note,.tx-date{font-size:11px;color:var(--muted);margin-top:3px;overflow-wrap:anywhere}.tx-right{text-align:right;white-space:nowrap}.tx-amount{font-size:13px;font-weight:800}.tx-right button{border:0;background:transparent;color:var(--muted);font-size:11px;text-decoration:underline;padding:4px 0}.footer{display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap;margin-top:24px;color:var(--muted);font-size:12px}.footer a{color:var(--brand)}.notice{margin-top:16px;padding:12px 14px;border-radius:12px;background:var(--amber-bg);color:#6e4b12;font-size:12px}.modal-backdrop{position:fixed;inset:0;background:#0c1c15a8;display:none;align-items:center;justify-content:center;padding:18px;z-index:10}.modal-backdrop.open{display:flex}.modal{background:var(--surface);border-radius:18px;width:min(100%,470px);max-height:90vh;overflow:auto;padding:23px;box-shadow:0 24px 80px #0003}.modal-head{display:flex;align-items:center;justify-content:space-between;gap:12px;margin-bottom:18px}.modal-head h2{margin:0;font-size:20px}.close{border:0;background:var(--bg);width:34px;height:34px;border-radius:10px;font-size:20px}.field{display:grid;gap:6px;margin:13px 0}.field label{font-size:12px;font-weight:750;color:#4d5e54}.field input,.field select,.field textarea{width:100%;border:1px solid var(--line);border-radius:10px;padding:11px 12px;background:#fff;color:var(--ink)}.field textarea{resize:vertical;min-height:70px}.field-hint{font-size:11px;color:var(--muted)}.form-actions{display:flex;gap:8px;margin-top:20px}.form-actions .btn{flex:1}.toast{position:fixed;left:50%;bottom:24px;transform:translate(-50%,20px);opacity:0;pointer-events:none;background:#17382a;color:#fff;border-radius:12px;padding:12px 16px;box-shadow:var(--shadow);transition:.2s;z-index:20;max-width:calc(100% - 32px);text-align:center}.toast.show{opacity:1;transform:translate(-50%,0)}.hidden{display:none!important}.privacy-note{font-size:11px;color:var(--muted);line-height:1.5;margin-top:14px}
+    @media(max-width:760px){.app{padding:0 14px 30px}.topbar{padding:16px 0}.brand h1{font-size:18px}.brand p{display:none}.hero{padding:22px;align-items:flex-start;flex-direction:column}.hero .btn{width:100%}.stats{grid-template-columns:1fr;gap:9px;margin:13px 0 20px}.stat{padding:14px 16px;display:grid;grid-template-columns:1fr auto;align-items:center}.stat .amount{grid-column:2;grid-row:1 / span 2;margin:0;font-size:21px}.stat small{grid-column:1;margin-top:3px}.workspace{grid-template-columns:1fr}.panel{padding:16px}.top-actions .btn{padding:9px 10px;font-size:12px}.footer{margin-top:18px}.detail-empty{min-height:160px}}
+    @media(min-width:761px){.people-panel{min-height:420px}}
+  </style>
+</head>
+<body>
+  <main class="app">
+    <header class="topbar">
+      <div class="brand"><div class="logo">B</div><div><h1>BalanceBook</h1><p>Your money, clearly tracked.</p></div></div>
+      <div class="top-actions"><button class="btn" id="exportBtn" type="button">↓ Backup</button><button class="btn" id="importBtn" type="button">↑ Restore</button><button class="btn primary" id="addPersonBtn" type="button">＋ Add person</button></div>
+    </header>
+    <section class="hero">
+      <div><div class="eyebrow">Personal balance tracker</div><h2>Keep every balance<br>in one place.</h2><p>Track money lent, money borrowed, and repayments without messy notes or guesswork.</p></div>
+      <button class="btn" id="heroAddBtn" type="button">＋ Record a balance</button>
+    </section>
+    <section class="stats" aria-label="Balance summary">
+      <article class="stat"><div class="stat-top"><span>Owed to you</span><span class="stat-icon">↗</span></div><div class="amount" id="owedToYou">Rs 0</div><small>Money others still need to repay</small></article>
+      <article class="stat negative"><div class="stat-top"><span>You owe</span><span class="stat-icon">↙</span></div><div class="amount" id="youOwe">Rs 0</div><small>Your outstanding borrowing</small></article>
+      <article class="stat net"><div class="stat-top"><span>Net balance</span><span class="stat-icon">＝</span></div><div class="amount" id="netBalance">Rs 0</div><small>Owed to you minus what you owe</small></article>
+    </section>
+    <div class="section-head"><div><h2>Your people</h2><p>Choose a person to see their balance and history.</p></div><button class="btn subtle small" id="quickAddBtn" type="button">＋ Add</button></div>
+    <section class="workspace">
+      <article class="panel people-panel">
+        <input class="search" id="searchPeople" type="search" placeholder="Search people…" aria-label="Search people">
+        <div class="people-list" id="peopleList"></div>
+      </article>
+      <article class="panel" id="detailPanel"><div class="detail-empty"><div><div style="font-size:32px;margin-bottom:10px">◷</div><strong style="display:block;color:var(--ink);margin-bottom:5px">Your ledger starts here</strong>Add a person or record a balance to get started.</div></div></article>
+    </section>
+    <div class="notice"><strong>Privacy reminder:</strong> This first version stores records in this browser on this device. Export a backup regularly. Don't enter bank passwords, card details, or other highly sensitive information.</div>
+    <footer class="footer"><span>BalanceBook · Simple personal records</span><span>Stored on this device · <a href="#" id="privacyBtn">Privacy & data</a></span></footer>
+  </main>
+
+  <div class="modal-backdrop" id="personModal" role="dialog" aria-modal="true" aria-labelledby="personModalTitle">
+    <form class="modal" id="personForm"><div class="modal-head"><h2 id="personModalTitle">Add a person</h2><button class="close" type="button" data-close="personModal" aria-label="Close">×</button></div>
+      <div class="field"><label for="personName">Name *</label><input id="personName" maxlength="80" required placeholder="e.g. Ahmed Khan"></div>
+      <div class="field"><label for="personContact">Optional contact note</label><input id="personContact" maxlength="100" placeholder="e.g. College friend (no sensitive details)"></div>
+      <div class="form-actions"><button class="btn" type="button" data-close="personModal">Cancel</button><button class="btn primary" type="submit">Save person</button></div>
+    </form>
+  </div>
+  <div class="modal-backdrop" id="txModal" role="dialog" aria-modal="true" aria-labelledby="txModalTitle">
+    <form class="modal" id="txForm"><div class="modal-head"><h2 id="txModalTitle">Record a balance</h2><button class="close" type="button" data-close="txModal" aria-label="Close">×</button></div>
+      <div class="field"><label for="txPerson">Person *</label><select id="txPerson" required></select></div>
+      <div class="field"><label for="txKind">Transaction *</label><select id="txKind" required><option value="lent">I lent money (they owe me)</option><option value="received">I received a repayment</option><option value="borrowed">I borrowed money (I owe them)</option><option value="paid">I repaid money I owed</option></select><div class="field-hint">Repayments reduce the matching outstanding balance.</div></div>
+      <div class="field"><label for="txAmount">Amount in PKR *</label><input id="txAmount" type="number" min="1" max="999999999" step="0.01" required placeholder="e.g. 2500"></div>
+      <div class="field"><label for="txDate">Date *</label><input id="txDate" type="date" required></div>
+      <div class="field"><label for="txNote">Note (optional)</label><textarea id="txNote" maxlength="250" placeholder="e.g. Paid back part of the amount"></textarea></div>
+      <div class="form-actions"><button class="btn" type="button" data-close="txModal">Cancel</button><button class="btn primary" type="submit">Save transaction</button></div>
+    </form>
+  </div>
+  <div class="modal-backdrop" id="importModal" role="dialog" aria-modal="true" aria-labelledby="importTitle">
+    <form class="modal" id="importForm"><div class="modal-head"><h2 id="importTitle">Restore a backup</h2><button class="close" type="button" data-close="importModal" aria-label="Close">×</button></div>
+      <p style="margin-top:0;color:var(--muted);font-size:13px">Choose a BalanceBook JSON backup. Restoring replaces the records currently stored in this browser.</p>
+      <div class="field"><label for="backupFile">Backup file *</label><input id="backupFile" type="file" accept=".json,application/json" required></div>
+      <div class="form-actions"><button class="btn" type="button" data-close="importModal">Cancel</button><button class="btn primary" type="submit">Restore backup</button></div>
+    </form>
+  </div>
+  <div class="toast" id="toast" role="status" aria-live="polite"></div>
+  <script>
+    (() => {
+      'use strict';
+      const STORAGE_KEY = 'balancebook-data-v1';
+      const $ = id => document.getElementById(id);
+      let data = loadData();
+      let selectedPersonId = null;
+      let toastTimer;
+
+      function loadData() {
+        try {
+          const raw = localStorage.getItem(STORAGE_KEY);
+          if (!raw) return {version:1, people:[], transactions:[]};
+          const parsed = JSON.parse(raw);
+          if (parsed && Array.isArray(parsed.people) && Array.isArray(parsed.transactions)) return parsed;
+        } catch (err) { console.warn('Could not load saved data', err); }
+        return {version:1, people:[], transactions:[]};
+      }
+      function saveData() {
+        try { localStorage.setItem(STORAGE_KEY, JSON.stringify(data)); return true; }
+        catch (err) { showToast('Could not save. Export a backup and check browser storage.'); return false; }
+      }
+      function uid() { return Date.now().toString(36) + Math.random().toString(36).slice(2,9); }
+      function money(value) {
+        const n = Math.round((Number(value) + Number.EPSILON) * 100) / 100;
+        return 'Rs ' + n.toLocaleString('en-PK', {minimumFractionDigits: n % 1 ? 2 : 0, maximumFractionDigits:2});
+      }
+      function dateToday() { const d = new Date(); return `${d.getFullYear()}-${String(d.getMonth()+1).padStart(2,'0')}-${String(d.getDate()).padStart(2,'0')}`; }
+      function escapeHTML(value) { return String(value ?? '').replace(/[&<>"']/g, ch => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[ch])); }
+      function personName(id) { return data.people.find(p => p.id === id)?.name || 'Unknown person'; }
+      function txEffect(tx) {
+        if (tx.kind === 'lent') return {side:'theyOwe', delta:tx.amount};
+        if (tx.kind === 'received') return {side:'theyOwe', delta:-tx.amount};
+        if (tx.kind === 'borrowed') return {side:'iOwe', delta:tx.amount};
+        return {side:'iOwe', delta:-tx.amount};
+      }
+      function balanceFor(personId, side) {
+        return data.transactions.filter(t => t.personId === personId && txEffect(t).side === side).reduce((sum,t) => sum + txEffect(t).delta, 0);
+      }
+      function totals() {
+        let theyOwe = 0, iOwe = 0;
+        data.people.forEach(p => { theyOwe += Math.max(0, balanceFor(p.id,'theyOwe')); iOwe += Math.max(0, balanceFor(p.id,'iOwe')); });
+        return {theyOwe, iOwe, net:theyOwe-iOwe};
+      }
+      function txLabel(kind) { return ({lent:'Money lent',received:'Repayment received',borrowed:'Money borrowed',paid:'Repayment made'})[kind] || 'Transaction'; }
+      function txSigned(tx) { const effect=txEffect(tx); return effect.delta < 0 ? '−' + money(Math.abs(effect.delta)) : '+' + money(effect.delta); }
+      function showToast(message) { const el=$('toast'); el.textContent=message; el.classList.add('show'); clearTimeout(toastTimer); toastTimer=setTimeout(()=>el.classList.remove('show'),2800); }
+      function openModal(id) { $(id).classList.add('open'); const first=$(id).querySelector('input,select,textarea,button'); if(first) setTimeout(()=>first.focus(),30); }
+      function closeModal(id) { $(id).classList.remove('open'); }
+      function render() {
+        const t=totals(); $('owedToYou').textContent=money(t.theyOwe); $('youOwe').textContent=money(t.iOwe); $('netBalance').textContent=(t.net<0?'−':'')+money(Math.abs(t.net));
+        renderPeople(); renderDetails(); renderPersonOptions();
+      }
+      function renderPeople() {
+        const list=$('peopleList'); const q=$('searchPeople').value.trim().toLowerCase();
+        const people=data.people.filter(p => (p.name+' '+(p.contact||'')).toLowerCase().includes(q)).sort((a,b)=>a.name.localeCompare(b.name));
+        if(!people.length){ list.innerHTML=`<div class="empty"><strong>${q?'No matching people':'No people added yet'}</strong>${q?'Try a different search.':'Add someone to record money lent or borrowed.'}</div>`; return; }
+        list.innerHTML=people.map(p=>{const a=balanceFor(p.id,'theyOwe'),b=balanceFor(p.id,'iOwe'),net=a-b;return `<div class="person ${selectedPersonId===p.id?'selected':''}" data-person="${escapeHTML(p.id)}" tabindex="0" role="button" aria-label="View ${escapeHTML(p.name)}"><div class="avatar">${escapeHTML(initials(p.name))}</div><div class="person-main"><div class="person-name">${escapeHTML(p.name)}</div><div class="person-meta">${escapeHTML(p.contact||'Personal balance')}</div></div><div class="person-balance">${net<0?'−':''}${money(Math.abs(net))}<small>${net>0?'Net owed to you':net<0?'Net you owe':'Settled'}</small></div></div>`}).join('');
+        list.querySelectorAll('[data-person]').forEach(el=>{const select=()=>{selectedPersonId=el.dataset.person;render();};el.addEventListener('click',select);el.addEventListener('keydown',e=>{if(e.key==='Enter'||e.key===' '){e.preventDefault();select();}});});
+      }
+      function initials(name) { return name.trim().split(/\s+/).slice(0,2).map(part=>part[0]||'').join('').toUpperCase() || '?'; }
+      function renderDetails() {
+        const panel=$('detailPanel'); const p=data.people.find(x=>x.id===selectedPersonId);
+        if(!p){panel.innerHTML='<div class="detail-empty"><div><div style="font-size:32px;margin-bottom:10px">◷</div><strong style="display:block;color:var(--ink);margin-bottom:5px">Your ledger starts here</strong>Add a person or select someone from the list to see their balance and history.</div></div>';return;}
+        const owed=balanceFor(p.id,'theyOwe'), owe=balanceFor(p.id,'iOwe'), net=owed-owe;
+        const txs=data.transactions.filter(t=>t.personId===p.id).sort((a,b)=>b.date.localeCompare(a.date)||b.createdAt-a.createdAt);
+        panel.innerHTML=`<div class="detail-head"><div class="avatar">${escapeHTML(initials(p.name))}</div><div style="min-width:0;flex:1"><h3>${escapeHTML(p.name)}</h3><p>${escapeHTML(p.contact||'Personal balance')}</p></div><button class="btn small" id="editPersonBtn" type="button">Edit</button></div>
+          <div class="detail-balance"><span>Net balance with ${escapeHTML(p.name.split(' ')[0])}</span><strong>${net<0?'−':''}${money(Math.abs(net))}</strong><span>${net>0?'They owe you more than you owe them':net<0?'You owe them more than they owe you':'No outstanding net balance'}</span></div>
+          <div style="display:grid;grid-template-columns:1fr 1fr;gap:9px;margin-bottom:16px"><div style="border:1px solid var(--line);border-radius:10px;padding:11px"><div style="font-size:11px;color:var(--muted)">They owe you</div><strong>${money(Math.max(0,owed))}</strong></div><div style="border:1px solid var(--line);border-radius:10px;padding:11px"><div style="font-size:11px;color:var(--muted)">You owe them</div><strong>${money(Math.max(0,owe))}</strong></div></div>
+          <div class="detail-actions"><button class="btn primary small" id="addTxForPerson" type="button">＋ Transaction</button><button class="btn small" id="deletePersonBtn" type="button">Delete person</button></div>
+          <h4 class="history-title">TRANSACTION HISTORY (${txs.length})</h4><div class="history">${txs.length?txs.map(tx=>{const eff=txEffect(tx);return `<div class="transaction"><div class="tx-icon ${eff.delta>=0?'plus':'minus'}">${eff.delta>=0?'↗':'↙'}</div><div class="tx-main"><div class="tx-title">${txLabel(tx.kind)}</div><div class="tx-date">${escapeHTML(tx.date)}</div>${tx.note?`<div class="tx-note">${escapeHTML(tx.note)}</div>`:''}</div><div class="tx-right"><div class="tx-amount">${txSigned(tx)}</div><button type="button" data-delete-tx="${escapeHTML(tx.id)}">Delete</button></div></div>`}).join(''):'<div class="empty">No transactions yet. Add one to start tracking.</div>'}</div>`;
+        $('editPersonBtn').addEventListener('click',()=>editPerson(p)); $('addTxForPerson').addEventListener('click',()=>openTransaction(p.id));
+        $('deletePersonBtn').addEventListener('click',()=>{if(confirm(`Delete ${p.name} and all their transactions? This cannot be undone unless you have a backup.`)){data.people=data.people.filter(x=>x.id!==p.id);data.transactions=data.transactions.filter(x=>x.personId!==p.id);selectedPersonId=null;saveData();render();showToast('Person and transactions deleted.');}});
+        panel.querySelectorAll('[data-delete-tx]').forEach(btn=>btn.addEventListener('click',()=>{if(confirm('Delete this transaction? The balance will be recalculated.')){data.transactions=data.transactions.filter(t=>t.id!==btn.dataset.deleteTx);saveData();render();showToast('Transaction deleted.');}}));
+      }
+      function renderPersonOptions() {
+        const select=$('txPerson'); const current=select.value;
+        select.innerHTML=data.people.length?data.people.slice().sort((a,b)=>a.name.localeCompare(b.name)).map(p=>`<option value="${escapeHTML(p.id)}">${escapeHTML(p.name)}</option>`).join(''):'<option value="">Add a person first</option>';
+        if(data.people.some(p=>p.id===current)) select.value=current; else if(data.people.some(p=>p.id===selectedPersonId)) select.value=selectedPersonId;
+      }
+      function openTransaction(personId) {
+        if(!data.people.length){openPerson();showToast('Add a person first.');return;}
+        renderPersonOptions(); if(personId) $('txPerson').value=personId;
+        $('txDate').value=dateToday();$('txAmount').value='';$('txNote').value='';$('txKind').value='lent';openModal('txModal');
+      }
+      function openPerson() { $('personForm').reset();openModal('personModal'); }
+      function editPerson(person) {
+        const name=prompt('Edit name:',person.name); if(name===null)return; const clean=name.trim(); if(!clean){showToast('Name cannot be empty.');return;}
+        const contact=prompt('Edit optional contact note:',person.contact||''); if(contact===null)return;
+        person.name=clean.slice(0,80);person.contact=contact.trim().slice(0,100);saveData();render();showToast('Person updated.');
+      }
+      $('addPersonBtn').addEventListener('click',openPerson); $('quickAddBtn').addEventListener('click',openPerson); $('heroAddBtn').addEventListener('click',()=>openTransaction(selectedPersonId));
+      $('searchPeople').addEventListener('input',renderPeople);
+      document.querySelectorAll('[data-close]').forEach(btn=>btn.addEventListener('click',()=>closeModal(btn.dataset.close)));
+      document.querySelectorAll('.modal-backdrop').forEach(backdrop=>backdrop.addEventListener('click',e=>{if(e.target===backdrop)closeModal(backdrop.id);}));
+      document.addEventListener('keydown',e=>{if(e.key==='Escape')document.querySelectorAll('.modal-backdrop.open').forEach(m=>closeModal(m.id));});
+      $('personForm').addEventListener('submit',e=>{e.preventDefault();const name=$('personName').value.trim();if(!name)return;const p={id:uid(),name:name.slice(0,80),contact:$('personContact').value.trim().slice(0,100),createdAt:Date.now()};data.people.push(p);selectedPersonId=p.id;saveData();render();closeModal('personModal');showToast('Person added.');});
+      $('txForm').addEventListener('submit',e=>{e.preventDefault();const personId=$('txPerson').value,amount=Number($('txAmount').value),kind=$('txKind').value,date=$('txDate').value;if(!data.people.some(p=>p.id===personId)){showToast('Choose a person first.');return;}if(!Number.isFinite(amount)||amount<=0||amount>999999999){showToast('Enter a valid positive amount.');return;}if(!date){showToast('Choose a date.');return;}
+        const tx={id:uid(),personId,kind,amount:Math.round(amount*100)/100,date,note:$('txNote').value.trim().slice(0,250),createdAt:Date.now()};
+        const side=txEffect(tx).side; const current=balanceFor(personId,side); if(txEffect(tx).delta<0 && Math.abs(txEffect(tx).delta)>current+0.00001){if(!confirm('This repayment is larger than the currently recorded balance in this category. Save it anyway? The balance for this category can become negative.'))return;}
+        data.transactions.push(tx);selectedPersonId=personId;saveData();render();closeModal('txModal');showToast('Transaction saved.');});
+      $('exportBtn').addEventListener('click',()=>{const blob=new Blob([JSON.stringify({...data,exportedAt:new Date().toISOString(),app:'BalanceBook'},null,2)],{type:'application/json'});const url=URL.createObjectURL(blob);const a=document.createElement('a');a.href=url;a.download=`balancebook-backup-${dateToday()}.json`;document.body.appendChild(a);a.click();a.remove();URL.revokeObjectURL(url);showToast('Backup exported. Keep it somewhere safe.');});
+      $('importBtn').addEventListener('click',()=>{$('importForm').reset();openModal('importModal');});
+      $('importForm').addEventListener('submit',async e=>{e.preventDefault();const file=$('backupFile').files[0];if(!file)return;try{const incoming=JSON.parse(await file.text());if(!incoming||!Array.isArray(incoming.people)||!Array.isArray(incoming.transactions))throw new Error('That file is not a valid BalanceBook backup.');const pids=new Set(incoming.people.map(p=>p.id));if(incoming.people.some(p=>!p.id||typeof p.name!=='string')||incoming.transactions.some(t=>!t.id||!pids.has(t.personId)||!['lent','received','borrowed','paid'].includes(t.kind)||!Number.isFinite(Number(t.amount))||Number(t.amount)<=0||!t.date))throw new Error('Backup data failed validation.');if(!confirm('Restore this backup and replace current records? Export your current data first if you need it.'))return;data={version:1,people:incoming.people,transactions:incoming.transactions};selectedPersonId=null;saveData();render();closeModal('importModal');showToast('Backup restored.');}catch(err){showToast(err.message||'Could not read that backup.');}});
+      $('privacyBtn').addEventListener('click',e=>{e.preventDefault();alert('BalanceBook stores your people and transactions in this browser using localStorage. The data is not sent to a server by this app. Anyone with access to this browser profile may be able to view it. Export backups regularly; clearing browser data may erase records. Use a strong device passcode and do not store highly sensitive information.');});
+      if('serviceWorker' in navigator && location.protocol.startsWith('http')) navigator.serviceWorker.register('./sw.js').catch(err=>console.warn('Offline setup unavailable',err));
+      render();
+    })();
+  </script>
+</body>
+</html>

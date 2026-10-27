@@ -1,0 +1,13 @@
+{
+  "name": "BalanceBook — Personal Balance Tracker",
+  "short_name": "BalanceBook",
+  "description": "Track money lent, borrowed, and repayments.",
+  "start_url": "./index.html",
+  "scope": "./",
+  "display": "standalone",
+  "background_color": "#f4f7f5",
+  "theme_color": "#10251f",
+  "icons": [
+    { "src": "icon.svg", "sizes": "any", "type": "image/svg+xml", "purpose": "any maskable" }
+  ]
+}
